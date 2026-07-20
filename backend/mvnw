@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+
+BASEDIR="$(cd "$(dirname "$0")" && pwd)"
+WRAPPER_DIR="$BASEDIR/.mvn/wrapper"
+WRAPPER_JAR="$WRAPPER_DIR/maven-wrapper.jar"
+WRAPPER_PROPS="$WRAPPER_DIR/maven-wrapper.properties"
+WRAPPER_URL="$(sed -n 's/^wrapperUrl=//p' "$WRAPPER_PROPS")"
+
+if [ ! -f "$WRAPPER_JAR" ]; then
+  mkdir -p "$WRAPPER_DIR"
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$WRAPPER_URL" -o "$WRAPPER_JAR"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -q "$WRAPPER_URL" -O "$WRAPPER_JAR"
+  else
+    echo "curl or wget is required to download Maven Wrapper" >&2
+    exit 1
+  fi
+fi
+
+exec java -jar "$WRAPPER_JAR" "$@"
+
