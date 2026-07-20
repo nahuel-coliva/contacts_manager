@@ -6,6 +6,8 @@ WRAPPER_DIR="$BASEDIR/.mvn/wrapper"
 WRAPPER_JAR="$WRAPPER_DIR/maven-wrapper.jar"
 WRAPPER_PROPS="$WRAPPER_DIR/maven-wrapper.properties"
 WRAPPER_URL="$(sed -n 's/^wrapperUrl=//p' "$WRAPPER_PROPS")"
+MAVEN_PROJECTBASEDIR="$BASEDIR"
+export MAVEN_PROJECTBASEDIR
 
 if [ ! -f "$WRAPPER_JAR" ]; then
   mkdir -p "$WRAPPER_DIR"
@@ -19,5 +21,4 @@ if [ ! -f "$WRAPPER_JAR" ]; then
   fi
 fi
 
-exec java -jar "$WRAPPER_JAR" "$@"
-
+exec java "-Dmaven.multiModuleProjectDirectory=$MAVEN_PROJECTBASEDIR" -classpath "$WRAPPER_JAR" org.apache.maven.wrapper.MavenWrapperMain "$@"
