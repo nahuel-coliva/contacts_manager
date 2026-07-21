@@ -1,6 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { API_BASE_URL } from './api-base-url.token';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,6 @@ import { API_BASE_URL } from './api-base-url.token';
   template: `
     <main class="app-shell">
       <h1>Contacts Manager</h1>
-      <p>Backend configurato su: {{ apiUrl }}</p>
       <router-outlet></router-outlet>
     </main>
   `,
@@ -25,13 +23,6 @@ import { API_BASE_URL } from './api-base-url.token';
       font-size: 32px;
     }
 
-    p {
-      margin: 0;
-      color: #5f6368;
-    }
   `]
 })
-export class AppComponent {
-  constructor(@Inject(API_BASE_URL) public readonly apiUrl: string) {}
-}
-
+export class AppComponent {}
