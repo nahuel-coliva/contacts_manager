@@ -1,13 +1,14 @@
 package com.example.contactsmanager.service;
 
-import com.example.contactsmanager.entity.Contact;
+import com.example.contactsmanager.dto.ContactRequest;
+import com.example.contactsmanager.dto.ContactResponse;
 import java.util.List;
 
 public interface ContactService {
 
-    List<Contact> findAll();
+    List<ContactResponse> findAll();
 
-    Contact create(Contact contact);
+    ContactResponse create(ContactRequest contact);
 
     void deleteById(Long id);
 }

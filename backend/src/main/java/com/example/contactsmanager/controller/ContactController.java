@@ -1,6 +1,7 @@
 package com.example.contactsmanager.controller;
 
-import com.example.contactsmanager.entity.Contact;
+import com.example.contactsmanager.dto.ContactRequest;
+import com.example.contactsmanager.dto.ContactResponse;
 import com.example.contactsmanager.service.ContactService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +22,17 @@ public class ContactController {
     private final ContactService contactService;
 
     @GetMapping
-    public List<Contact> getAllContacts() {
+    public List<ContactResponse> getAllContacts() {
         return contactService.findAll();
     }
 
     @PostMapping
-    public Contact createContact(@RequestBody Contact contact) {
+    public ContactResponse createContact(@RequestBody ContactRequest contact) {
         return contactService.create(contact);
     }
 
     @PutMapping("/{id}")
-    public Contact updateContact(@PathVariable Long id, @RequestBody Contact contact) {
+    public ContactResponse updateContact(@PathVariable Long id, @RequestBody ContactRequest contact) {
         return null;
     }
 
